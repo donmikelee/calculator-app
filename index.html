@@ -1,25 +1,56 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Calculator App 📐</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./src/styles.scss" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spartan:wght@300;400;500;600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-	<title>Calculator App 📐</title>
-	<meta charset="UTF-8" />
-</head>
-
-<body>
-	<div id="calc-app">
-		<div class="calc-header">
-
-		</div>
-		<div class="calc-display">
-
-		</div>
-		<div class="cals-keyboard">
-			
-		</div>
-	</div>
-	<script src="src/index.js">
-	</script>
-</body>
-
+  <body>
+    <div id="calc-app">
+      <div class="calc-header">
+        <div class="header-title">
+          <h1>calc</h1>
+        </div>
+        <div class="calc-theme">
+          <h2>theme</h2>
+          <div class="tw-toggle">
+			<input type="radio" name="toggle" value="false" />
+			<label class="toggle toggle-yes">1</label>
+			<input checked type="radio" name="toggle" value="-1" />
+			<label class="toggle toggle-yes">2</label>
+			<input type="radio" name="toggle" value="true" />
+			<label class="toggle toggle-yes">3</label>
+			<span></span>
+		  </div>
+        </div>
+      </div>
+      <div class="calc-display"></div>
+      <div class="calc-keyboard">
+        <div class="calc-button"><p>7</p></div>
+        <div class="calc-button"><p>8</p></div>
+        <div class="calc-button"><p>9</p></div>
+        <div class="calc-button"><p>del</p></div>
+        <div class="calc-button"><p>4</p></div>
+        <div class="calc-button"><p>5</p></div>
+        <div class="calc-button"><p>6</p></div>
+        <div class="calc-button"><p>+</p></div>
+        <div class="calc-button"><p>1</p></div>
+        <div class="calc-button"><p>2</p></div>
+        <div class="calc-button"><p>3</p></div>
+        <div class="calc-button"><p>-</p></div>
+        <div class="calc-button"><p>.</p></div>
+        <div class="calc-button"><p>0</p></div>
+        <div class="calc-button"><p>/</p></div>
+        <div class="calc-button"><p>x</p></div>
+        <div class="calc-button"><p>reset</p></div>
+        <div class="calc-button"><p>=</p></div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
 </html>

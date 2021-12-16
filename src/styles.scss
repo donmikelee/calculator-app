@@ -1,0 +1,240 @@
+/********* COLORS *********/
+
+/**** Backgrounds ****/
+
+/* Dark */
+
+$main-background: hsl(222, 26%, 31%);
+$keypad-toggle-background: hsl(223, 31%, 20%);
+$screen-background: hsl(224, 36%, 15%);
+
+/* Light */
+
+$main-background-light: hsl(0, 0%, 90%);
+$keypad-toggle-background-light: (0, 5%, 81%);
+$screen-background-light: hsl(0, 0%, 93%);
+
+/* Custom */
+
+$main-background-custom: hsl(268, 75%, 9%);
+$keypad-toggle-background-custom: hsl(268, 71%, 12%);
+$screen-background-custom: hsl(268, 71%, 12%);
+
+/**** Keys ****/
+
+/* Dark */
+
+$key-background: hsl(225, 21%, 49%);
+$key-shadow: hsl(224, 28%, 35%);
+
+$key-red: hsl(6, 63%, 50%);
+$key-dark-red: hsl(6, 70%, 34%);
+
+$key-background-two: hsl(30, 25%, 89%);
+$key-shadow-two: hsl(28, 16%, 65%);
+
+/* Light */
+
+$key-background-light: hsl(185, 42%, 37%);
+$key-shadow-light: hsl(185, 58%, 25%);
+
+$key-light: hsl(25, 98%, 40%);
+$key-brown-light: hsl(25, 99%, 27%);
+
+$key-background-two-light: hsl(45, 7%, 89%);
+$key-shadow-two-light: hsl(35, 11%, 61%);
+
+/* Custom */
+
+$key-background-custom: hsl(281, 89%, 26%);
+$key-shadow-custom: hsl(285, 91%, 52%);
+
+$key-custom: hsl(176, 100%, 44%);
+$key-dark--custom: hsl(177, 92%, 70%);
+
+$key-background-two-custom: hsl(268, 47%, 21%);
+$key-shadow-two-custom: hsl(290, 70%, 36%);
+
+/**** Text ****/
+
+/* Dark */
+
+$text-blue: hsl(221, 14%, 31%);
+$text-white: hsl(0, 0, 100%);
+
+/* Light */
+
+$text-gray: hsl(60, 10%, 19%);
+
+/* Custom */
+
+$text-yellow: hsl(52, 100%, 62%);
+$text-dark-blue: hsl(198, 20%, 13%);
+
+/********* CODE *********/
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Spartan", sans-serif;
+  background-color: $main-background;
+  display: flex;
+  color: $text-white;
+}
+
+#calc-app {
+  width: 540px;
+  margin: auto;
+
+  .calc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+    margin-bottom: 32px;
+  }
+
+  .calc-theme {
+    display: flex;
+
+    h2 {
+      margin-right: 21px;
+      margin-top: 31px;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .tw-toggle {
+      display: inline-block;
+      padding: 2px 3px;
+      border-radius: 20px;
+      position: relative;
+      border: 2px solid #95a5a6;
+
+      label {
+        text-align: center;
+        font-family: sans-serif;
+        display: inline-block;
+        color: #95a5a6;
+        position: relative;
+        z-index: 2;
+        margin: 0;
+        text-align: center;
+        padding: 2px 3px;
+        font-size: 15px;
+      }
+
+      input {
+        position: absolute;
+        z-index: 3;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      span {
+        height: 21px;
+        width: 21px;
+        line-height: 21px;
+        border-radius: 50%;
+        background: hsl(6, 63%, 50%);
+        display: block;
+        position: absolute;
+        left: 23px;
+        top: 2px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      input[value="false"]:checked ~ span {
+        left: 0px;
+      }
+
+      input[value="-1"]:checked ~ span {
+        left: 18px;
+      }
+
+      input[value="true"]:checked ~ span {
+        left: 36px;
+      }
+
+      input[value="false"]:checked + label,
+      input[value="true"]:checked + label {
+        color: #fff;
+      }
+
+      input[value="-1"]:checked + label {
+        color: #fff;
+      }
+    }
+  }
+
+  .calc-display {
+    height: 128px;
+    border-radius: 10px;
+    background-color: $screen-background;
+    margin-bottom: 24px;
+  }
+
+  .calc-keyboard {
+    height: 480px;
+    border-radius: 10px;
+    background-color: $keypad-toggle-background;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 32px 32px 32px 32px;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 32px;
+    font-weight: 600;
+
+    .calc-button {
+      height: 64px;
+      width: 101px;
+      background-color: $key-background;
+      border-radius: 10px;
+      margin-right: 22px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      opacity: 0.9;
+
+      p {
+        margin: auto;
+      }
+    }
+
+    .calc-button:hover {
+      opacity: 1;
+    }
+
+    .calc-button:nth-child(4),
+    .calc-button:nth-child(8),
+    .calc-button:nth-child(12),
+    .calc-button:nth-child(16) {
+      margin-right: 0;
+    }
+
+    .calc-button:nth-child(17),
+    .calc-button:nth-child(18) {
+      width: 227px;
+      margin-bottom: 0;
+    }
+
+    .calc-button:nth-child(18) {
+      background-color: $key-red;
+      margin-right: 0;
+    }
+  }
+}
