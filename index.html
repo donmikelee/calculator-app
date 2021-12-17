@@ -10,7 +10,7 @@
     />
   </head>
 
-  <body>
+  <body class="dark">
     <div id="calc-app">
       <div class="calc-header">
         <div class="header-title">
@@ -18,37 +18,54 @@
         </div>
         <div class="calc-theme">
           <h2>theme</h2>
-          <div class="tw-toggle">
-			<input type="radio" name="toggle" value="false" />
-			<label class="toggle toggle-yes">1</label>
-			<input checked type="radio" name="toggle" value="-1" />
-			<label class="toggle toggle-yes">2</label>
-			<input type="radio" name="toggle" value="true" />
-			<label class="toggle toggle-yes">3</label>
-			<span></span>
-		  </div>
+          <div class="toggler">
+            <div class="labels">
+              <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+              </ul>
+            </div>
+            <div id="switcher" class="switcher dark">
+              <input id="dark-mode" type="radio" name="toggle" value="dark" />
+              <input
+                id="light-mode"
+                checked
+                type="radio"
+                name="toggle"
+                value="light"
+              />
+              <input
+                id="custom-mode"
+                type="radio"
+                name="toggle"
+                value="custom"
+              />
+              <span></span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="calc-display"></div>
-      <div class="calc-keyboard">
-        <div class="calc-button"><p>7</p></div>
-        <div class="calc-button"><p>8</p></div>
-        <div class="calc-button"><p>9</p></div>
-        <div class="calc-button"><p>del</p></div>
-        <div class="calc-button"><p>4</p></div>
-        <div class="calc-button"><p>5</p></div>
-        <div class="calc-button"><p>6</p></div>
-        <div class="calc-button"><p>+</p></div>
-        <div class="calc-button"><p>1</p></div>
-        <div class="calc-button"><p>2</p></div>
-        <div class="calc-button"><p>3</p></div>
-        <div class="calc-button"><p>-</p></div>
-        <div class="calc-button"><p>.</p></div>
-        <div class="calc-button"><p>0</p></div>
-        <div class="calc-button"><p>/</p></div>
-        <div class="calc-button"><p>x</p></div>
-        <div class="calc-button"><p>reset</p></div>
-        <div class="calc-button"><p>=</p></div>
+      <div class="calc-display dark"></div>
+      <div class="calc-keyboard dark">
+        <div class="calc-button dark"><p>7</p></div>
+        <div class="calc-button dark"><p>8</p></div>
+        <div class="calc-button dark"><p>9</p></div>
+        <div class="calc-button dark"><p>del</p></div>
+        <div class="calc-button dark"><p>4</p></div>
+        <div class="calc-button dark"><p>5</p></div>
+        <div class="calc-button dark"><p>6</p></div>
+        <div class="calc-button dark"><p>+</p></div>
+        <div class="calc-button dark"><p>1</p></div>
+        <div class="calc-button dark"><p>2</p></div>
+        <div class="calc-button dark"><p>3</p></div>
+        <div class="calc-button dark"><p>-</p></div>
+        <div class="calc-button dark"><p>.</p></div>
+        <div class="calc-button dark"><p>0</p></div>
+        <div class="calc-button dark"><p>/</p></div>
+        <div class="calc-button dark"><p>x</p></div>
+        <div class="calc-button dark"><p>reset</p></div>
+        <div class="calc-button dark"><p>=</p></div>
       </div>
     </div>
     <script src="src/index.js"></script>
