@@ -171,7 +171,7 @@ body {
         input {
           z-index: 3;
           cursor: pointer;
-          opacity: 0;
+          // opacity: 0;
         }
 
         span {
@@ -185,11 +185,6 @@ body {
         }
       }
     }
-  }
-
-  .toggler .switcher input ~ span {
-    left: 6px;
-    background-color: $key-red;
   }
 
   .toggler .switcher input[value="dark"]:checked ~ span {
