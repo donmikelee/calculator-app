@@ -99,6 +99,7 @@ body.custom {
 #calc-app .calc-theme .toggler .switcher input {
   z-index: 3;
   cursor: pointer;
+  opacity: 0;
 }
 #calc-app .calc-theme .toggler .switcher span {
   height: 16px;
@@ -125,7 +126,13 @@ body.custom {
   height: 128px;
   border-radius: 10px;
   margin-bottom: 24px;
+  padding-right: 32px;
   transition: background-color 500ms ease-in-out;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 48px;
+  font-weight: 600;
+  align-items: center;
 }
 #calc-app .calc-display.dark {
   background-color: #182034;
@@ -169,17 +176,21 @@ body.custom {
   text-transform: uppercase;
   cursor: pointer;
   display: flex;
+  justify-content: center;
+  align-items: center;
   opacity: 0.9;
   transition: background-color 500ms ease-in-out;
+  box-shadow: 0px 6px 0px 0px #b4a597;
 }
 #calc-app .calc-keyboard .calc-button.dark {
   background-color: #eae3dc;
 }
 #calc-app .calc-keyboard .calc-button.light {
-  background-color: #377f86;
+  background-color: #e5e4e1;
 }
 #calc-app .calc-keyboard .calc-button.custom {
   background-color: #58077d;
+  box-shadow: 0px 6px 0px 0px #871c9c;
 }
 #calc-app .calc-keyboard .calc-button p {
   margin: auto;
@@ -191,6 +202,7 @@ body.custom {
 #calc-app .calc-keyboard .calc-button:nth-child(17) {
   font-size: 20px;
   transition: background-color 500ms ease-in-out, color 500ms ease-in-out;
+  box-shadow: 0px 6px 0px 0px #404e72;
 }
 #calc-app .calc-keyboard .calc-button:nth-child(4).dark,
 #calc-app .calc-keyboard .calc-button:nth-child(17).dark {
@@ -200,10 +212,12 @@ body.custom {
 #calc-app .calc-keyboard .calc-button:nth-child(4).light,
 #calc-app .calc-keyboard .calc-button:nth-child(17).light {
   background-color: #377f86;
+  color: white;
 }
 #calc-app .calc-keyboard .calc-button:nth-child(4).custom,
 #calc-app .calc-keyboard .calc-button:nth-child(17).custom {
   background-color: #58077d;
+  box-shadow: 0px 6px 0px 0px #871c9c;
 }
 #calc-app .calc-keyboard .calc-button:nth-child(4),
 #calc-app .calc-keyboard .calc-button:nth-child(8),
@@ -218,7 +232,8 @@ body.custom {
 }
 #calc-app .calc-keyboard .calc-button:nth-child(18) {
   margin-right: 0;
-  transition: background-color 500ms ease-in-out, color 500ms ease-in-out;
+  transition: background-color 500ms ease-in-out, color 500ms ease-in-out, box-shadow 500ms ease-in-out;
+  box-shadow: 0px 6px 0px 0px #93261a;
 }
 #calc-app .calc-keyboard .calc-button:nth-child(18).dark {
   background-color: #d03f2f;
@@ -226,10 +241,13 @@ body.custom {
 }
 #calc-app .calc-keyboard .calc-button:nth-child(18).light {
   background-color: #ca5502;
+  color: white;
+  box-shadow: 0px 6px 0px 0px #893901;
 }
 #calc-app .calc-keyboard .calc-button:nth-child(18).custom {
   background-color: #00e0d1;
   color: #1b2428;
+  box-shadow: 0px 6px 0px 0px #6cf9f2;
 }
 
 /*# sourceMappingURL=/styles.962e011e.css.map */

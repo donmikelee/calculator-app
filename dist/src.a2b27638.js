@@ -125,7 +125,10 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 var body = document.body;
+var screen = document.getElementById("screen");
+var deleteButton = document.querySelector('.calc-button[name="delete"]');
 var inputs = document.querySelectorAll('input[name="toggle"]');
+var buttons = document.querySelectorAll('.calc-button[name="cypher"]');
 var checkedValue = "";
 
 var checkedInputHandler = function checkedInputHandler() {
@@ -134,29 +137,72 @@ var checkedInputHandler = function checkedInputHandler() {
   }, 500);
 };
 
-window.addEventListener("load", checkedInputHandler());
-window.addEventListener("load", function () {
-  for (var i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener("change", function () {
-      var input = this.value;
-      var elements = document.querySelectorAll(".".concat(checkedValue));
+var changeThemeHandler = function changeThemeHandler() {
+  var _iterator = _createForOfIteratorHelper(inputs),
+      _step;
 
-      var _iterator = _createForOfIteratorHelper(elements),
-          _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var input = _step.value;
+      input.addEventListener("change", function () {
+        var inputValue = this.value;
+        var elements = document.querySelectorAll(".".concat(checkedValue));
 
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          element = _step.value;
-          element.classList.replace(checkedValue, input);
+        var _iterator2 = _createForOfIteratorHelper(elements),
+            _step2;
+
+        try {
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            element = _step2.value;
+            element.classList.replace(checkedValue, inputValue);
+          }
+        } catch (err) {
+          _iterator2.e(err);
+        } finally {
+          _iterator2.f();
         }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-    });
+      });
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
   }
-});
+};
+
+var displayNumbers = function displayNumbers() {
+  var _iterator3 = _createForOfIteratorHelper(buttons),
+      _step3;
+
+  try {
+    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+      var button = _step3.value;
+
+      button.onclick = function () {
+        var clickedNumber = this.innerHTML;
+        screen.innerHTML += clickedNumber;
+      };
+    }
+  } catch (err) {
+    _iterator3.e(err);
+  } finally {
+    _iterator3.f();
+  }
+};
+
+var clearScreen = function clearScreen() {
+  deleteButton.onclick = function () {
+    screen.innerHTML = null;
+    console.log("Klick");
+  };
+};
+
+window.onload = function () {
+  checkedInputHandler();
+  changeThemeHandler();
+  displayNumbers();
+  clearScreen();
+};
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
