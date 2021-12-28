@@ -117,139 +117,79 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"src/index.js":[function(require,module,exports) {
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+})({"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-var body = document.body;
-var screen = document.getElementById('screen');
-var deleteButton = document.querySelector('.calc-button[name="delete"]');
-var resetButton = document.querySelector('.calc-button[name="reset"]');
-var equalButton = document.querySelector('.calc-button[name="equal"]');
-var inputs = document.querySelectorAll('input[name="toggle"]');
-var buttons = document.querySelectorAll('.calc-button[name="cypher"]');
-var operators = document.querySelectorAll('.calc-button[name="operator"]');
-var checkedValue = '';
-
-var checkedInputHandler = function checkedInputHandler() {
-  setInterval(function () {
-    checkedValue = document.querySelector('input[name="toggle"]:checked').value;
-  }, 500);
-};
-
-var changeThemeHandler = function changeThemeHandler() {
-  var _iterator = _createForOfIteratorHelper(inputs),
-      _step;
-
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var input = _step.value;
-      input.addEventListener('change', function () {
-        var inputValue = this.value;
-        var elements = document.querySelectorAll(".".concat(checkedValue));
-
-        var _iterator2 = _createForOfIteratorHelper(elements),
-            _step2;
-
-        try {
-          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-            element = _step2.value;
-            element.classList.replace(checkedValue, inputValue);
-          }
-        } catch (err) {
-          _iterator2.e(err);
-        } finally {
-          _iterator2.f();
-        }
-      });
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
   }
-};
 
-var displayNumbers = function displayNumbers() {
-  var _iterator3 = _createForOfIteratorHelper(buttons),
-      _step3;
+  return bundleURL;
+}
 
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
   try {
-    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-      var button = _step3.value;
-
-      button.onclick = function () {
-        var clickedNumber = this.innerHTML;
-
-        if (screen.innerHTML.length > 13) {
-          screen.innerHTML = 'error';
-        } else {
-          screen.innerHTML += clickedNumber;
-        }
-
-        if (screen.innerHTML === 'error') {
-          screen.innerHTML = null;
-          screen.innerHTML += clickedNumber;
-        }
-      };
-    }
+    throw new Error();
   } catch (err) {
-    _iterator3.e(err);
-  } finally {
-    _iterator3.f();
-  }
-};
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
 
-var displayOperator = function displayOperator() {
-  var _iterator4 = _createForOfIteratorHelper(operators),
-      _step4;
-
-  try {
-    for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-      var operator = _step4.value;
-
-      operator.onclick = function () {
-        var clickedOperator = this.innerHTML;
-        console.log(clickedOperator);
-        screen.innerHTML += clickedOperator;
-      };
+    if (matches) {
+      return getBaseURL(matches[0]);
     }
-  } catch (err) {
-    _iterator4.e(err);
-  } finally {
-    _iterator4.f();
   }
-};
 
-var clearScreen = function clearScreen() {
-  resetButton.onclick = function () {
-    updateScreen(null);
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
   };
-};
 
-var doMathOperation = function doMathOperation() {
-  equalButton.onclick = function () {
-    var finalNumber = eval(screen.innerHTML);
-    screen.innerHTML = finalNumber;
-  };
-};
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
 
-var updateScreen = function updateScreen(value) {
-  screen.innerHTML = value;
-};
+var cssTimeout = null;
 
-window.onload = function () {
-  checkedInputHandler();
-  changeThemeHandler();
-  displayNumbers();
-  displayOperator();
-  clearScreen();
-  doMathOperation();
-};
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"src/styles.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -453,5 +393,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/index.js"], null)
-//# sourceMappingURL=/src.a2b27638.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/styles.dd855970.js.map
