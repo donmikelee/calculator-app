@@ -144,7 +144,7 @@ var Calculator = /*#__PURE__*/function () {
     value: function clear() {
       this.currentNumber = '';
       this.previousNumber = '';
-      this.operator = undefined;
+      this.operator = '';
     }
   }, {
     key: "delete",

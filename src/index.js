@@ -8,7 +8,7 @@ class Calculator {
   clear() {
     this.currentNumber = '';
     this.previousNumber = '';
-    this.operator = undefined;
+    this.operator = '';
   }
 
   delete() {
