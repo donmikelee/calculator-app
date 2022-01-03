@@ -177,28 +177,7 @@ var Calculator = /*#__PURE__*/function () {
       var prev = parseFloat(this.previousNumber);
       var current = parseFloat(this.currentNumber);
       if (isNaN(prev) || isNaN(current)) return;
-
-      switch (this.operator) {
-        case '+':
-          computation = prev + current;
-          break;
-
-        case '-':
-          computation = prev - current;
-          break;
-
-        case '*':
-          computation = prev * current;
-          break;
-
-        case '/':
-          computation = prev / current;
-          break;
-
-        default:
-          return;
-      }
-
+      computation = eval("".concat(prev, " ").concat(this.operator, " ").concat(current));
       this.currentNumber = computation;
       this.operator = '';
       this.previousNumber = '';
@@ -328,7 +307,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61896" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57814" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

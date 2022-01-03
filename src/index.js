@@ -39,22 +39,8 @@ class Calculator {
     const current = parseFloat(this.currentNumber);
 
     if (isNaN(prev) || isNaN(current)) return;
-    switch (this.operator) {
-      case '+':
-        computation = prev + current;
-        break;
-      case '-':
-        computation = prev - current;
-        break;
-      case '*':
-        computation = prev * current;
-        break;
-      case '/':
-        computation = prev / current;
-        break;
-      default:
-        return;
-    }
+
+    computation = eval(`${prev} ${this.operator} ${current}`);
 
     this.currentNumber = computation;
     this.operator = '';
