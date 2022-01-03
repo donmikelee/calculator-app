@@ -124,20 +124,143 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-var body = document.body;
-var screen = document.getElementById('screen');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var Calculator = /*#__PURE__*/function () {
+  function Calculator(currNumber, prevNumber) {
+    _classCallCheck(this, Calculator);
+
+    this.currentNumber = currNumber;
+    this.previousNumber = prevNumber;
+    this.clear();
+  }
+
+  _createClass(Calculator, [{
+    key: "clear",
+    value: function clear() {
+      this.currentNumber = '';
+      this.previousNumber = '';
+      this.operator = undefined;
+    }
+  }, {
+    key: "delete",
+    value: function _delete() {
+      this.currentNumber = this.currentNumber.toString().slice(0, -1);
+    }
+  }, {
+    key: "displayNumber",
+    value: function displayNumber(number) {
+      if (number === '.' && this.currentNumber.includes('.')) return;
+      this.currentNumber = this.currentNumber.toString() + number.toString();
+    }
+  }, {
+    key: "chooseOperator",
+    value: function chooseOperator(operator) {
+      if (this.currentNumber === '') return;
+
+      if (this.previousNumber !== '') {
+        this.compute();
+      }
+
+      this.operator = operator;
+      this.previousNumber = this.currentNumber;
+      this.currentNumber = '';
+    }
+  }, {
+    key: "compute",
+    value: function compute() {
+      var computation;
+      var prev = parseFloat(this.previousNumber);
+      var current = parseFloat(this.currentNumber);
+      if (isNaN(prev) || isNaN(current)) return;
+
+      switch (this.operator) {
+        case '+':
+          computation = prev + current;
+          break;
+
+        case '-':
+          computation = prev - current;
+          break;
+
+        case '*':
+          computation = prev * current;
+          break;
+
+        case '/':
+          computation = prev / current;
+          break;
+
+        default:
+          return;
+      }
+
+      this.currentNumber = computation;
+      this.operator = '';
+      this.previousNumber = '';
+    }
+  }, {
+    key: "updateDisplay",
+    value: function updateDisplay() {
+      currNumber.innerText = this.currentNumber;
+
+      if (this.operator != null) {
+        prevNumber.innerText = "".concat(this.previousNumber, " ").concat(this.operator);
+      }
+    }
+  }]);
+
+  return Calculator;
+}();
+
 var deleteButton = document.querySelector('.calc-button[name="delete"]');
 var resetButton = document.querySelector('.calc-button[name="reset"]');
 var equalButton = document.querySelector('.calc-button[name="equal"]');
+var currNumber = document.querySelector('.current-number');
+var prevNumber = document.querySelector('.previous-number');
 var inputs = document.querySelectorAll('input[name="toggle"]');
-var buttons = document.querySelectorAll('.calc-button[name="cypher"]');
+var numberButtons = document.querySelectorAll('.calc-button[name="cypher"]');
 var operators = document.querySelectorAll('.calc-button[name="operator"]');
+var equal = document.querySelector('.calc-button[name="equal"]');
+var calculator = new Calculator(currNumber, prevNumber);
+numberButtons.forEach(function (button) {
+  button.onclick = function () {
+    calculator.displayNumber(button.innerText);
+    calculator.updateDisplay();
+  };
+});
+operators.forEach(function (button) {
+  button.onclick = function () {
+    calculator.chooseOperator(button.innerText);
+    calculator.updateDisplay();
+  };
+});
+
+equal.onclick = function () {
+  calculator.compute();
+  calculator.updateDisplay();
+};
+
+resetButton.onclick = function () {
+  calculator.clear();
+  calculator.updateDisplay();
+};
+
+deleteButton.onclick = function () {
+  calculator.delete();
+  calculator.updateDisplay();
+};
+
 var checkedValue = '';
 
 var checkedInputHandler = function checkedInputHandler() {
   setInterval(function () {
     checkedValue = document.querySelector('input[name="toggle"]:checked').value;
-  }, 500);
+  }, 100);
 };
 
 var changeThemeHandler = function changeThemeHandler() {
@@ -173,81 +296,9 @@ var changeThemeHandler = function changeThemeHandler() {
   }
 };
 
-var displayNumbers = function displayNumbers() {
-  var _iterator3 = _createForOfIteratorHelper(buttons),
-      _step3;
-
-  try {
-    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-      var button = _step3.value;
-
-      button.onclick = function () {
-        var clickedNumber = this.innerHTML;
-
-        if (screen.innerHTML.length > 13) {
-          screen.innerHTML = 'error';
-        } else {
-          screen.innerHTML += clickedNumber;
-        }
-
-        if (screen.innerHTML === 'error') {
-          screen.innerHTML = null;
-          screen.innerHTML += clickedNumber;
-        }
-      };
-    }
-  } catch (err) {
-    _iterator3.e(err);
-  } finally {
-    _iterator3.f();
-  }
-};
-
-var displayOperator = function displayOperator() {
-  var _iterator4 = _createForOfIteratorHelper(operators),
-      _step4;
-
-  try {
-    for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-      var operator = _step4.value;
-
-      operator.onclick = function () {
-        var clickedOperator = this.innerHTML;
-        console.log(clickedOperator);
-        screen.innerHTML += clickedOperator;
-      };
-    }
-  } catch (err) {
-    _iterator4.e(err);
-  } finally {
-    _iterator4.f();
-  }
-};
-
-var clearScreen = function clearScreen() {
-  resetButton.onclick = function () {
-    updateScreen(null);
-  };
-};
-
-var doMathOperation = function doMathOperation() {
-  equalButton.onclick = function () {
-    var finalNumber = eval(screen.innerHTML);
-    screen.innerHTML = finalNumber;
-  };
-};
-
-var updateScreen = function updateScreen(value) {
-  screen.innerHTML = value;
-};
-
 window.onload = function () {
   checkedInputHandler();
   changeThemeHandler();
-  displayNumbers();
-  displayOperator();
-  clearScreen();
-  doMathOperation();
 };
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -277,7 +328,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63143" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61896" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
