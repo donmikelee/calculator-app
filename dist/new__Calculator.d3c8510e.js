@@ -140,7 +140,129 @@ var numberButtons = document.querySelectorAll('.calc-button[name="cypher"]');
 exports.numberButtons = numberButtons;
 var operators = document.querySelectorAll('.calc-button[name="operator"]');
 exports.operators = operators;
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"src/scripts/Calculator.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _index = require("../index");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var Calculator = /*#__PURE__*/function () {
+  function Calculator(currNumber, prevNumber) {
+    _classCallCheck(this, Calculator);
+
+    this.currentNumber = currNumber;
+    this.previousNumber = prevNumber;
+    this.clear();
+  }
+
+  _createClass(Calculator, [{
+    key: "clear",
+    value: function clear() {
+      this.currentNumber = '';
+      this.previousNumber = '';
+      this.operator = '';
+    }
+  }, {
+    key: "delete",
+    value: function _delete() {
+      this.currentNumber = this.currentNumber.toString().slice(0, -1);
+    }
+  }, {
+    key: "displayNumber",
+    value: function displayNumber(number) {
+      if (number === '.' && this.currentNumber.includes('.')) return;
+      this.currentNumber = this.currentNumber.toString() + number.toString();
+    }
+  }, {
+    key: "chooseOperator",
+    value: function chooseOperator(operator) {
+      if (this.currentNumber === '') return;
+
+      if (this.previousNumber !== '') {
+        this.compute();
+      }
+
+      this.operator = operator;
+      this.previousNumber = this.currentNumber;
+      this.currentNumber = '';
+    }
+  }, {
+    key: "compute",
+    value: function compute() {
+      var computation;
+      var prev = parseFloat(this.previousNumber);
+      var current = parseFloat(this.currentNumber);
+      if (isNaN(prev) || isNaN(current)) return;
+      computation = eval("".concat(prev, " ").concat(this.operator, " ").concat(current));
+      this.currentNumber = computation;
+      this.operator = '';
+      this.previousNumber = '';
+    }
+  }, {
+    key: "updateDisplay",
+    value: function updateDisplay() {
+      _index.currNumber.innerText = this.currentNumber;
+
+      if (this.operator != null) {
+        _index.prevNumber.innerText = "".concat(this.previousNumber, " ").concat(this.operator);
+      }
+    }
+  }]);
+
+  return Calculator;
+}();
+
+exports.default = Calculator;
+},{"../index":"src/index.js"}],"src/scripts/new__Calculator.js":[function(require,module,exports) {
+"use strict";
+
+var _Calculator = _interopRequireDefault(require("./Calculator"));
+
+var _index = require("../index");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var calculator = new _Calculator.default(_index.currNumber, _index.prevNumber);
+
+_index.numberButtons.forEach(function (button) {
+  button.onclick = function () {
+    calculator.displayNumber(button.innerText);
+    calculator.updateDisplay();
+  };
+});
+
+_index.operators.forEach(function (button) {
+  button.onclick = function () {
+    calculator.chooseOperator(button.innerText);
+    calculator.updateDisplay();
+  };
+});
+
+_index.equalButton.onclick = function () {
+  calculator.compute();
+  calculator.updateDisplay();
+};
+
+_index.resetButton.onclick = function () {
+  calculator.clear();
+  calculator.updateDisplay();
+};
+
+_index.deleteButton.onclick = function () {
+  calculator.delete();
+  calculator.updateDisplay();
+};
+},{"./Calculator":"src/scripts/Calculator.js","../index":"src/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -344,5 +466,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/index.js"], null)
-//# sourceMappingURL=/src.a2b27638.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/scripts/new__Calculator.js"], null)
+//# sourceMappingURL=/new__Calculator.d3c8510e.js.map

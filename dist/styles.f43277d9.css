@@ -1,17 +1,4 @@
-/********* COLORS *********/
-/**** Backgrounds ****/
-/* Dark */
-/* Light */
-/* Custom */
-/**** Keys ****/
-/* Dark */
-/* Light */
-/* Custom */
-/**** Text ****/
-/* Dark */
-/* Light */
-/* Custom */
-/********* CODE *********/
+
 html,
 body {
   height: 100%;
@@ -364,4 +351,6 @@ body.custom {
   -webkit-box-shadow: 0px 6px 0px 0px #6cf9f2;
           box-shadow: 0px 6px 0px 0px #6cf9f2;
 }
-/*# sourceMappingURL=styles.css.map */
+
+
+/*# sourceMappingURL=/styles.f43277d9.css.map */

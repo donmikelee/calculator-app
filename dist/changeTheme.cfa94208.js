@@ -140,7 +140,52 @@ var numberButtons = document.querySelectorAll('.calc-button[name="cypher"]');
 exports.numberButtons = numberButtons;
 var operators = document.querySelectorAll('.calc-button[name="operator"]');
 exports.operators = operators;
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"src/scripts/changeTheme.js":[function(require,module,exports) {
+"use strict";
+
+var _index = require("../index");
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var checkedValue = '';
+
+var checkedInputHandler = function checkedInputHandler() {
+  setInterval(function () {
+    checkedValue = document.querySelector('input[name="toggle"]:checked').value;
+  }, 100);
+};
+
+var changeThemeHandler = function changeThemeHandler() {
+  var _iterator = _createForOfIteratorHelper(_index.inputs),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var input = _step.value;
+      input.addEventListener('change', function () {
+        var inputValue = this.value;
+        var elements = document.querySelectorAll(".".concat(checkedValue));
+        elements.forEach(function (element) {
+          element.classList.replace(checkedValue, inputValue);
+        });
+      });
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+};
+
+window.onload = function () {
+  checkedInputHandler();
+  changeThemeHandler();
+};
+},{"../index":"src/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -344,5 +389,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/index.js"], null)
-//# sourceMappingURL=/src.a2b27638.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/scripts/changeTheme.js"], null)
+//# sourceMappingURL=/changeTheme.cfa94208.js.map

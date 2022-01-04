@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,uBAAuB;AAMvB,gBAAgB;AAWhB,gBAAgB",
+    "sources": [
+        "light.scss"
+    ],
+    "names": [],
+    "file": "light.css"
+}

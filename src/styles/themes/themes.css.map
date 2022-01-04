@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "ACAA,uBAAuB;AAMvB,gBAAgB;AAWhB,gBAAgB;ACjBhB,uBAAuB;AAMvB,gBAAgB;AAWhB,gBAAgB;ACjBhB,uBAAuB;AAMvB,gBAAgB;AAWhB,gBAAgB",
+    "sources": [
+        "themes.scss",
+        "dark/dark.scss",
+        "light/light.scss",
+        "custom/custom.scss"
+    ],
+    "names": [],
+    "file": "themes.css"
+}
