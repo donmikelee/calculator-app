@@ -6,7 +6,7 @@ This is a solution to the [Calculator app challenge on Frontend Mentor](https://
 
 - [Overview](#overview)
   - [About app](#aboutapp)
-  - [Screenshot](#screenshot)
+  - [Change theme](#changethemes)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
