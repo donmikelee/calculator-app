@@ -18,7 +18,7 @@ This is a solution to the [Calculator app challenge on Frontend Mentor](https://
 
 ## Overview
 
-### About
+### About[#about]
 
 Calculator is a simple application where you can perform basic math operations such as addition, subtraction, division and multiplication.
 
